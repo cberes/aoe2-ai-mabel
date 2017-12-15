@@ -1,0 +1,8 @@
+; define a default strategy
+(defrule
+    (true)
+=>
+	(set-goal goal-age-fast goal-age-fast-castle)
+	(set-goal goal-strategy goal-strategy-knights)
+	(disable-self)
+)

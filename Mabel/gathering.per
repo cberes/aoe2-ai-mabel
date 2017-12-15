@@ -1,0 +1,45 @@
+; some strategic numbers for gathering
+(defrule
+	(current-age == dark-age)
+	(unit-type-count-total villager < num-villagers-for-lumber)
+=>
+	(set-strategic-number sn-food-gatherer-percentage 100)
+	(set-strategic-number sn-wood-gatherer-percentage 0)
+	(set-strategic-number sn-gold-gatherer-percentage 0)
+	(set-strategic-number sn-stone-gatherer-percentage 0)
+	(disable-self)
+)
+
+(defrule
+	(current-age == dark-age)
+	(unit-type-count-total villager >= num-villagers-for-lumber)
+=>
+	(set-strategic-number sn-food-gatherer-percentage 70)
+	(set-strategic-number sn-wood-gatherer-percentage 30)
+	(set-strategic-number sn-gold-gatherer-percentage 0)
+	(set-strategic-number sn-stone-gatherer-percentage 0)
+	(disable-self)
+)
+
+(defrule
+	(or (current-age == feudal-age)
+	    (goal goal-age goal-age-castle))
+	(resource-found gold)
+=>
+	(set-strategic-number sn-food-gatherer-percentage 55)
+	(set-strategic-number sn-wood-gatherer-percentage 30)
+	(set-strategic-number sn-gold-gatherer-percentage 15)
+	(set-strategic-number sn-stone-gatherer-percentage 0)
+	(disable-self)
+)
+
+(defrule
+    (current-age != dark-age)
+	(resource-found stone)
+=>
+	(set-strategic-number sn-food-gatherer-percentage 45)
+	(set-strategic-number sn-wood-gatherer-percentage 30)
+	(set-strategic-number sn-gold-gatherer-percentage 15)
+	(set-strategic-number sn-stone-gatherer-percentage 10)
+	(disable-self)
+)

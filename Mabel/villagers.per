@@ -1,0 +1,9 @@
+(defrule
+	(or (and (current-age == dark-age)
+	         (unit-type-count-total villager < num-dark-age-villagers))
+		(and (current-age != dark-age)
+	         (unit-type-count-total villager < num-max-villagers)))
+	(can-train villager)
+=>
+	(train villager)
+)

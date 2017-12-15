@@ -1,0 +1,29 @@
+; Age of Empires II
+; An artificial intelligence named Mabel
+
+(load "Mabel/constants.per")
+
+; some strategic numbers
+(defrule
+	(true)
+=>
+	(set-strategic-number sn-percent-civilian-gatherers 50) ; these are percentages
+	(set-strategic-number sn-percent-civilian-explorers 0)
+	(set-strategic-number sn-percent-civilian-builders 50)
+	(set-strategic-number sn-minimum-civilian-explorers 0) 	; use at least 0 civilians for exploring
+	(set-strategic-number sn-cap-civilian-explorers 0)		; use at most 0 civilians for exploring
+	(set-strategic-number sn-total-number-explorers 1)		; use at most 1 total explorers
+	(set-strategic-number sn-number-explore-groups 1)		; apparently this serves no purpose, but it must be set to the same as above
+	(set-strategic-number sn-initial-exploration-required 0); percentage of the map to explore before building
+	(disable-self)
+)
+
+(load "Mabel/strategy")
+(load "Mabel/gathering")
+(load "Mabel/ages")
+(load "Mabel/villagers")
+(load "Mabel/buildings")
+(load "Mabel/resources")
+(load "Mabel/military")
+(load "Mabel/research")
+(load "Mabel/debug")

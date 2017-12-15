@@ -1,0 +1,36 @@
+(defrule
+	(unit-type-count villager > 0)
+=>
+	(chat-to-all "Hello")
+	(disable-self)
+)
+(defrule
+	(unit-type-count villager >= 10)
+=>
+	(chat-to-all "Ten villagers")
+	(disable-self)
+)
+(defrule
+	(unit-type-count villager >= 20)
+=>
+	(chat-to-all "Twenty villagers")
+	(disable-self)
+)
+(defrule
+	(research-completed ri-loom)
+=>
+	(chat-to-all "Loom obtained")
+	(disable-self)
+)
+(defrule
+	(can-afford-research feudal-age)
+=>
+	(chat-to-all "I am able to advance to the Feudal Age")
+	(disable-self)
+)
+(defrule
+	(current-age == feudal-age)
+=>
+	(chat-to-all "I am in the Feudal Age")
+	(disable-self)
+)

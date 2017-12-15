@@ -1,0 +1,24 @@
+; advance to feudal age
+(defrule
+	(current-age == dark-age)
+	(building-type-count-total mill > 0)
+	(building-type-count-total lumber-camp > 0)
+	(unit-type-count-total villager >= num-dark-age-villagers)
+	(research-completed ri-loom)
+	(can-research feudal-age)
+=>
+	(research feudal-age)
+	(set-goal goal-age goal-age-castle)
+	(chat-to-allies "Researching Feudal Age")
+)
+
+(defrule
+	(current-age == feudal-age)
+	(or (goal goal-age-fast goal-age-fast-castle)
+	    (military-population >= num-feudal-age-military))
+	(can-research castle-age)
+=>
+	(research castle-age)
+	(set-goal goal-age goal-age-imperial)
+	(chat-to-allies "Researching Castle Age")
+)

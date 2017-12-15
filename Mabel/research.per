@@ -1,0 +1,7 @@
+; loom
+(defrule
+	(can-research ri-loom)
+	(unit-type-count-total villager >= num-dark-age-villagers)
+=>
+	(research ri-loom)
+)

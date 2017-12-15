@@ -1,0 +1,29 @@
+; farms
+(defrule
+	(building-type-count-total mill > 0)
+	(building-type-count-total lumber-camp > 0)
+	(unit-type-count-total villager >= num-villagers-for-farms)
+	(idle-farm-count <= max-idle-farms)
+=>
+	(build farm)
+)
+
+; boars
+#load-if-defined UP-AVAILABLE
+(defrule
+	(current-age == dark-age)
+	(unit-type-count-total villager >= num-villagers-for-boar)
+=>
+	(set-strategic-number sn-enable-boar-hunting 1)
+	(set-strategic-number sn-minimum-boar-lure-group-size 1)
+	(disable-self)
+)
+
+(defrule
+	(or (current-age != dark-age)
+	    (goal goal-age goal-age-castle))
+=>
+	(set-strategic-number sn-enable-boar-hunting 2)
+	(disable-self)
+)
+#end-if

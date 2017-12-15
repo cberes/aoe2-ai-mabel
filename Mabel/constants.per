@@ -1,0 +1,62 @@
+; villager totals
+#load-if-defined POPULATION-CAP-25
+(defconst num-max-villagers 12)
+#end-if
+#load-if-defined POPULATION-CAP-50
+(defconst num-max-villagers 25)
+#end-if
+#load-if-defined POPULATION-CAP-75
+(defconst num-max-villagers 40)
+#end-if
+#load-if-defined POPULATION-CAP-100
+(defconst num-max-villagers 50)
+#end-if
+#load-if-defined POPULATION-CAP-125
+(defconst num-max-villagers 65)
+#end-if
+#load-if-defined POPULATION-CAP-150
+(defconst num-max-villagers 75)
+#end-if
+#load-if-defined POPULATION-CAP-175
+(defconst num-max-villagers 90)
+#end-if
+#load-if-defined POPULATION-CAP-200
+(defconst num-max-villagers 100)
+#else
+(defconst num-max-villagers 150)
+#end-if
+
+(defconst num-dark-age-villagers 25)
+(defconst time-town-center-third 1500) ; 25 minutes
+
+; military totals
+(defconst num-feudal-age-military 20)
+
+; gathering totals
+(defconst num-villagers-for-lumber 7)
+(defconst num-villagers-for-boar 11)
+(defconst num-villagers-for-mill 12)
+(defconst num-villagers-for-farms 16)
+(defconst max-idle-farms 1)
+
+; goals
+(defconst goal-strategy 1)
+(defconst goal-age 2)
+(defconst goal-age-fast 3)
+
+; strategy
+(defconst goal-strategy-militia 1)
+(defconst goal-strategy-archers 2)
+(defconst goal-strategy-scouts 3)
+(defconst goal-strategy-knights 4)
+(defconst goal-strategy-unique 4)
+(defconst goal-strategy-trash 4)
+
+; age
+(defconst goal-age-feudal 1)
+(defconst goal-age-castle 2)
+(defconst goal-age-imperial 3)
+
+; age-fast
+(defconst goal-age-fast-castle 1)
+(defconst goal-age-fast-imperial 2)

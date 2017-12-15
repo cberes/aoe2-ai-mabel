@@ -1,0 +1,136 @@
+; houses
+(defrule
+	(can-build house)
+	(housing-headroom < 4) ;the difference between the current population and supportable population
+						   ;(not the amount of population houses support)
+	(population-headroom > 3) ;the difference between the current population and the population limit
+=>
+	(build house)
+)
+
+; lumber camps
+(defrule
+	(building-type-count-total house > 0)
+	(building-type-count-total lumber-camp == 0)
+	(unit-type-count-total villager >= num-villagers-for-lumber)
+	(resource-found wood)
+	(can-build lumber-camp)
+=>
+	(build lumber-camp)
+)
+
+; mills
+(defrule
+	(building-type-count-total lumber-camp > 0)
+	(building-type-count-total mill == 0)
+	(unit-type-count-total villager >= num-villagers-for-mill)
+	(resource-found food)
+	(can-build mill)
+=>
+	(build mill)
+)
+
+; mining camp for gold
+(defrule
+	(building-type-count-total lumber-camp > 0)
+	(building-type-count-total mill > 0)
+	(building-type-count-total mining-camp == 0)
+	(resource-found gold)
+	(strategic-number sn-gold-gatherer-percentage > 0)
+	(can-build mining-camp)
+=>
+	(build mining-camp)
+)
+
+; mining camp for stone
+(defrule
+	(building-type-count-total lumber-camp > 0)
+	(building-type-count-total mill > 0)
+	(building-type-count-total mining-camp == 1)
+	(resource-found stone)
+	(strategic-number sn-stone-gatherer-percentage > 0)
+	(can-build mining-camp)
+=>
+	(build mining-camp)
+)
+
+; blacksmith
+(defrule
+	(building-type-count-total blacksmith == 0)
+	(current-age != dark-age)
+	(can-build blacksmith)
+=>
+	(build blacksmith)
+)
+
+; market
+(defrule
+	(building-type-count-total market == 0)
+	(current-age != dark-age)
+	(can-build market)
+=>
+	(build market)
+)
+
+; barracks
+(defrule
+	(building-type-count-total barracks == 0)
+	(or (current-age != dark-age)
+	    (and (goal goal-age-fast 0)
+		     (goal goal-age goal-age-castle)))
+	(can-build barracks)
+=>
+	(build barracks)
+)
+
+; archery-range
+(defrule
+	(building-type-count-total barracks > 0)
+	(building-type-count-total archery-range == 0)
+	(current-age != dark-age)
+	(or (goal goal-strategy goal-strategy-archers)
+	    (goal goal-strategy goal-strategy-trash))
+	(can-build archery-range)
+=>
+	(build archery-range)
+)
+
+; stable
+(defrule
+	(building-type-count-total barracks > 0)
+	(building-type-count-total stable == 0)
+	(current-age != dark-age)
+	(or (goal goal-strategy goal-strategy-knights)
+	    (goal goal-strategy goal-strategy-scouts))
+	(can-build stable)
+=>
+	(build stable)
+)
+
+; town center 2
+(defrule
+	(current-age == castle-age)
+	(building-type-count-total town-center < 2)
+	(can-build town-center)
+=>
+	(build town-center)
+)
+
+; town center 3
+(defrule
+	(current-age == castle-age)
+	(game-time > time-town-center-third)
+	(building-type-count-total town-center < 3)
+	(can-build town-center)
+=>
+	(build town-center)
+)
+
+; town center 4
+(defrule
+	(current-age == imperial-age)
+	(building-type-count-total town-center < 4)
+	(can-build town-center)
+=>
+	(build town-center)
+)
