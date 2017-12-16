@@ -1,7 +1,7 @@
 ; knights
 (defrule
     (goal goal-strategy goal-strategy-knights)
-	(can-build knight-line)
+	(can-train knight-line)
 =>
 	(train knight-line)
 )
@@ -9,7 +9,7 @@
 ; scouts
 (defrule
     (goal goal-strategy goal-strategy-scouts)
-	(can-build scout-cavalry-line)
+	(can-train scout-cavalry-line)
 =>
 	(train scout-cavalry-line)
 )
@@ -17,7 +17,7 @@
 ; archers
 (defrule
     (goal goal-strategy goal-strategy-archers)
-	(can-build archer-line)
+	(can-train archer-line)
 =>
 	(train archer-line)
 )
@@ -25,21 +25,29 @@
 ; militia
 (defrule
     (goal goal-strategy goal-strategy-militia)
-	(can-build militiaman-line)
+	(can-train militiaman-line)
 =>
 	(train militiaman-line)
+)
+
+; eagle warriors
+(defrule
+    (goal goal-strategy goal-strategy-eagles)
+	(can-train eagle-warrior-line)
+=>
+	(train eagle-warrior-line)
 )
 
 ; trash
 (defrule
     (goal goal-strategy goal-strategy-trash)
-	(can-build skirmisher-line)
+	(can-train skirmisher-line)
 =>
 	(train skirmisher-line)
 )
 (defrule
     (goal goal-strategy goal-strategy-trash)
-	(can-build spearman-line)
+	(can-train spearman-line)
 =>
 	(train spearman-line)
 )

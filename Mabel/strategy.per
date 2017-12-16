@@ -6,3 +6,31 @@
 	(set-goal goal-strategy goal-strategy-knights)
 	(disable-self)
 )
+
+#load-if-defined AZTEC-CIV
+(defrule
+    (true)
+=>
+	(set-goal goal-age-fast 0)
+	(set-goal goal-strategy goal-strategy-eagles)
+	(disable-self)
+)
+#end-if
+#load-if-defined MAYAN-CIV
+(defrule
+    (true)
+=>
+	(set-goal goal-age-fast 0)
+	(set-goal goal-strategy goal-strategy-archers)
+	(disable-self)
+)
+#end-if
+#load-if-defined INCAN-CIV
+(defrule
+    (true)
+=>
+	(set-goal goal-age-fast 0)
+	(set-goal goal-strategy goal-strategy-trash)
+	(disable-self)
+)
+#end-if
