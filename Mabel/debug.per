@@ -34,3 +34,28 @@
 	(chat-to-all "I am in the Feudal Age")
 	(disable-self)
 )
+
+#load-if-defined UP-AVAILABLE
+(defrule
+	(true)
+=>
+	(chat-to-all "UserPatch is available")
+	(disable-self)
+)
+#end-if
+#load-if-defined UP-GAME-AGE2-X2
+(defrule
+	(true)
+=>
+	(chat-to-all "AOE2 X2 is enabled")
+	(disable-self)
+)
+#end-if
+#load-if-defined POPULATION-CAP-EXTENDED
+(defrule
+	(true)
+=>
+	(chat-to-all "Pop. cap is extended.")
+	(disable-self)
+)
+#end-if

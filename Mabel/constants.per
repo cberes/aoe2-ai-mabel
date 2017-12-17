@@ -22,14 +22,20 @@
 #end-if
 #load-if-defined POPULATION-CAP-200
 (defconst num-max-villagers 100)
+#end-if
+#load-if-defined POPULATION-CAP-EXTENDED
+#load-if-defined POPULATION-CAP-225
+(defconst num-max-villagers 115)
 #else
-(defconst num-max-villagers 150)
+(defconst num-max-villagers 125)
+#end-if
 #end-if
 
 (defconst num-dark-age-villagers 25)
-(defconst time-town-center-third 1500) ; 25 minutes
+(defconst castle-age-time-for-third-tc 300) ; 25 minutes
 
 ; military totals
+(defconst num-military-for-secondary-upgrade 10)
 (defconst num-feudal-age-military 20)
 
 ; gathering totals

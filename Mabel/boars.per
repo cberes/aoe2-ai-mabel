@@ -1,0 +1,21 @@
+; boars
+(defrule
+	(current-age == dark-age)
+	(unit-type-count-total villager >= num-villagers-for-boar)
+=>
+	(set-strategic-number sn-enable-boar-hunting 2)
+	(set-strategic-number sn-minimum-boar-lure-group-size 1)
+	(set-strategic-number sn-minimum-boar-hunt-group-size 5)
+	(disable-self)
+)
+
+; deer
+(defrule
+	(or (current-age != dark-age)
+	    (goal goal-age goal-age-castle))
+=>
+	(set-strategic-number sn-enable-boar-hunting 1)
+	(set-strategic-number sn-minimum-boar-lure-group-size 0)
+	(set-strategic-number sn-minimum-boar-hunt-group-size 4)
+	(disable-self)
+)

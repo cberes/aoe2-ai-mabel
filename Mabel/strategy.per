@@ -2,8 +2,12 @@
 (defrule
     (true)
 =>
-	(set-goal goal-age-fast goal-age-fast-castle)
-	(set-goal goal-strategy goal-strategy-knights)
+	(set-goal goal-age-fast 0) ; or use goal-age-fast-castle
+	(set-goal goal-strategy goal-strategy-archers)
+	(set-strategic-number sn-minimum-attack-group-size 6)
+	(set-strategic-number sn-maximum-attack-group-size 20)
+	(set-strategic-number sn-percent-attack-soldiers 75)
+	(set-strategic-number sn-percent-enemy-sighted-response 50)
 	(disable-self)
 )
 

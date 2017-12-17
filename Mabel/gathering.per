@@ -43,3 +43,26 @@
 	(set-strategic-number sn-stone-gatherer-percentage 10)
 	(disable-self)
 )
+(defrule
+	(or (current-age == feudal-age)
+	    (goal goal-age goal-age-castle))
+	(goal goal-strategy goal-strategy-archers)
+=>
+	(set-strategic-number sn-food-gatherer-percentage 30)
+	(set-strategic-number sn-wood-gatherer-percentage 45)
+	(set-strategic-number sn-gold-gatherer-percentage 25)
+	(set-strategic-number sn-stone-gatherer-percentage 0)
+	(disable-self)
+)
+
+(defrule
+	(current-age != dark-age)
+	(goal goal-strategy goal-strategy-archers)
+	(resource-found stone)
+=>
+	(set-strategic-number sn-food-gatherer-percentage 25)
+	(set-strategic-number sn-wood-gatherer-percentage 40)
+	(set-strategic-number sn-gold-gatherer-percentage 25)
+	(set-strategic-number sn-stone-gatherer-percentage 10)
+	(disable-self)
+)

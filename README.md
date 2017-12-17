@@ -12,13 +12,13 @@ This is a work in progress while its author learns how to create an AI for this 
 
 Some features to implement:
 
-- [ ] Build multiple resource-gathering buildings
-- [ ] Better village management
-- [ ] Build multiple military buildings
-- [ ] Build castles and castle-age buildings
-- [ ] Advance to the imperial age
+- [ ] Build additional resource-gathering buildings sooner
+- [ ] Build more military buildings as required
+- [x] Build castles and castle-age buildings
+- [x] Advance to the imperial age
 - [ ] Build multiple types of units
 - [ ] Defend when attacked
+- [ ] Better villager management
 - [ ] Re-task villagers when resources are exhausted
 
 © 2017 Corey Beres

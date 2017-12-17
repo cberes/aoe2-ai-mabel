@@ -1,16 +1,25 @@
 ; houses
 (defrule
 	(can-build house)
-	(housing-headroom < 4) ;the difference between the current population and supportable population
-						   ;(not the amount of population houses support)
-	(population-headroom > 3) ;the difference between the current population and the population limit
+	(housing-headroom < 4) 		; the difference between the current population and supportable population
+								; (not the amount of population houses support)
+	(population-headroom > 3)	; the difference between the current population and the population limit
 =>
 	(build house)
 )
 
+; farms
+(defrule
+	(building-type-count-total mill > 0)
+	(building-type-count-total lumber-camp > 0)
+	(unit-type-count-total villager >= num-villagers-for-farms)
+	(idle-farm-count <= max-idle-farms)
+=>
+	(build farm)
+)
+
 ; lumber camps
 (defrule
-	(building-type-count-total house > 0)
 	(building-type-count-total lumber-camp == 0)
 	(unit-type-count-total villager >= num-villagers-for-lumber)
 	(resource-found wood)
@@ -83,16 +92,27 @@
 	(build barracks)
 )
 
-; archery-range
+; archery range
 (defrule
 	(building-type-count-total barracks > 0)
 	(building-type-count-total archery-range == 0)
 	(current-age != dark-age)
-	(or (goal goal-strategy goal-strategy-archers)
-	    (goal goal-strategy goal-strategy-trash))
+	(goal goal-strategy goal-strategy-trash)
 	(can-build archery-range)
 =>
+	(set-strategic-number sn-number-forward-builders 2)
 	(build archery-range)
+)
+
+; forward archery ranges
+(defrule
+	(building-type-count-total barracks > 0)
+	(building-type-count-total archery-range < 2)
+	(current-age != dark-age)
+	(goal goal-strategy goal-strategy-archers)
+	(can-build archery-range)
+=>
+	(build-forward archery-range)
 )
 
 ; stable
@@ -107,6 +127,52 @@
 	(build stable)
 )
 
+; extra lumber camps
+(defrule
+	(building-type-count-total lumber-camp > 0)
+	(current-age != dark-age)
+	(resource-found wood)
+	(dropsite-min-distance wood > 4)
+	(can-build lumber-camp)
+=>
+	(build lumber-camp)
+)
+
+; extra mills
+(defrule
+	(building-type-count-total mill > 0)
+	(current-age != dark-age)
+	(resource-found food)
+	(dropsite-min-distance food > 7)
+	(can-build mill)
+=>
+	(build mill)
+)
+
+; extra mining camps for gold
+(defrule
+	(building-type-count-total mining-camp > 0)
+	(current-age > dark-age)
+	(resource-found gold)
+	(strategic-number sn-gold-gatherer-percentage > 0)
+	(dropsite-min-distance gold > 6)
+	(can-build mining-camp)
+=>
+	(build mining-camp)
+)
+
+; extra mining camps for stone
+(defrule
+	(building-type-count-total lumber-camp > 0)
+	(current-age > dark-age)
+	(resource-found stone)
+	(strategic-number sn-stone-gatherer-percentage > 0)
+	(dropsite-min-distance stone > 6)
+	(can-build mining-camp)
+=>
+	(build mining-camp)
+)
+
 ; town center 2
 (defrule
 	(current-age == castle-age)
@@ -119,7 +185,7 @@
 ; town center 3
 (defrule
 	(current-age == castle-age)
-	(game-time > time-town-center-third)
+	(current-age-time > castle-age-time-for-third-tc)
 	(building-type-count-total town-center < 3)
 	(can-build town-center)
 =>
@@ -133,4 +199,29 @@
 	(can-build town-center)
 =>
 	(build town-center)
+)
+
+; university
+(defrule
+	(building-type-count-total university == 0)
+	(current-age >= castle-age)
+	(can-build university)
+=>
+	(build university)
+)
+
+; first monastery
+(defrule
+	(building-type-count-total monastery == 0)
+	(current-age >= castle-age)
+	(can-build monastery)
+=>
+	(build monastery)
+)
+
+; castles
+(defrule
+	(can-build castle)
+=>
+	(build castle)
 )

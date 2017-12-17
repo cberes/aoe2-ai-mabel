@@ -9,7 +9,7 @@
 =>
 	(set-strategic-number sn-percent-civilian-gatherers 50) ; these are percentages
 	(set-strategic-number sn-percent-civilian-explorers 0)
-	(set-strategic-number sn-percent-civilian-builders 50)
+	(set-strategic-number sn-percent-civilian-builders 50)  ; TODO 50% builders seems high
 	(set-strategic-number sn-minimum-civilian-explorers 0) 	; use at least 0 civilians for exploring
 	(set-strategic-number sn-cap-civilian-explorers 0)		; use at most 0 civilians for exploring
 	(set-strategic-number sn-total-number-explorers 1)		; use at most 1 total explorers
@@ -19,11 +19,17 @@
 )
 
 (load "Mabel/strategy")
+#load-if-defined UP-AVAILABLE
+(load "Mabel/boars")
+#else
+#load-if-defined UP-GAME-AGE2-X2
+(load "Mabel/boars")
+#end-if
+#end-if
 (load "Mabel/gathering")
 (load "Mabel/ages")
 (load "Mabel/villagers")
 (load "Mabel/buildings")
-(load "Mabel/resources")
 (load "Mabel/military")
 (load "Mabel/research")
 (load "Mabel/debug")

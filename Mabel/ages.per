@@ -22,3 +22,12 @@
 	(set-goal goal-age goal-age-imperial)
 	(chat-to-allies "Researching Castle Age")
 )
+
+(defrule
+	(current-age == castle-age)
+	(can-research imperial-age)
+=>
+	(research imperial-age)
+	(set-goal goal-age 0)
+	(chat-to-allies "Researching Imperial Age")
+)

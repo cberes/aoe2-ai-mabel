@@ -5,3 +5,141 @@
 =>
 	(research ri-loom)
 )
+
+; bow saw
+(defrule
+	(can-research ri-bow-saw)
+	(or (current-age > feudal-age)
+	    (and (current-age == feudal-age)
+		     (goal goal-age-fast 0)))
+=>
+	(research ri-bow-saw)
+)
+
+; horse collar
+(defrule
+	(can-research ri-horse-collar)
+	(or (current-age > feudal-age)
+	    (and (current-age == feudal-age)
+		     (goal goal-age-fast 0)))
+=>
+	(research ri-horse-collar)
+)
+
+; double-bit axe
+(defrule
+	(can-research ri-double-bit-axe)
+=>
+	(research ri-double-bit-axe)
+)
+
+; heavy plow
+(defrule
+	(can-research ri-heavy-plow)
+=>
+	(research ri-heavy-plow)
+)
+
+; two-man saw
+(defrule
+	(can-research ri-two-man-saw)
+=>
+	(research ri-two-man-saw)
+)
+
+; crop rotation
+(defrule
+	(can-research ri-crop-rotation)
+=>
+	(research ri-crop-rotation)
+)
+
+; fletching
+(defrule
+	(or (goal goal-strategy goal-strategy-archers)
+	    (goal goal-strategy goal-strategy-trash))
+	(can-research ri-fletching)
+=>
+	(research ri-fletching)
+)
+
+; padded archer armor
+(defrule
+	(goal goal-strategy goal-strategy-archers)
+	(unit-type-count-total archer-line > num-military-for-secondary-upgrade)
+	(can-research ri-padded-archer-armor)
+=>
+	(research ri-padded-archer-armor)
+)
+
+; bodkin arrow
+(defrule
+	(goal goal-strategy goal-strategy-archers)
+	(can-research ri-bodkin-arrow)
+=>
+	(research ri-bodkin-arrow)
+)
+
+; leather archer armor
+(defrule
+	(goal goal-strategy goal-strategy-archers)
+	(unit-type-count-total archer-line > 50) ; TODO what's a good number?
+	(can-research ri-leather-archer-armor)
+=>
+	(research ri-leather-archer-armor)
+)
+
+; crossbowmen
+(defrule
+	(goal goal-strategy goal-strategy-archers)
+	(can-research ri-crossbow)
+=>
+	(research ri-crossbow)
+)
+
+; arbalests
+(defrule
+	(goal goal-strategy goal-strategy-archers)
+	(can-research ri-arbalest)
+=>
+	(research ri-arbalest)
+)
+
+; bracer
+(defrule
+	(goal goal-strategy goal-strategy-archers)
+	(can-research ri-bracer)
+=>
+	(research ri-bracer)
+)
+
+; murder holes
+(defrule
+	(building-type-count-total castle > 0)
+	(can-research ri-murder-holes)
+=>
+	(research ri-murder-holes)
+)
+
+; murder holes
+(defrule
+	(goal goal-strategy goal-strategy-archers)
+	(or (and (goal goal-strategy goal-strategy-archers)
+	         (unit-type-count-total archer-line > num-feudal-age-military))
+	    (and (goal goal-strategy goal-strategy-trash)
+			 (unit-type-count-total skirmisher-line > num-military-for-secondary-upgrade)))
+	(can-research ri-ballistics)
+=>
+	(research ri-ballistics)
+)
+
+; chemistry
+(defrule
+	(or (and (goal goal-strategy goal-strategy-archers)
+	         (unit-type-count-total archer-line > num-feudal-age-military))
+	    (and (goal goal-strategy goal-strategy-trash)
+			 (unit-type-count-total skirmisher-line > num-military-for-secondary-upgrade)))
+	(can-research ri-chemistry)
+=>
+	(research ri-chemistry)
+)
